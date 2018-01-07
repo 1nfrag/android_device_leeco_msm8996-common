@@ -798,6 +798,7 @@ service hci_filter_root /system/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth oem_2901 system
+    seclabel u:r:wcnss_filter:s0
     disabled
 
 service ftmd /system/bin/logwrapper /system/bin/ftmdaemon
