@@ -382,13 +382,10 @@ PRODUCT_PACKAGES += \
     libwpa_client \
     wificond \
     wifilogd \
-    readfem \
-    readmac \
     hostapd \
     wpa_supplicant \
-    wpa_supplicant.conf 
-
-#    WCNSS_wlan_dictionary.dat
+    wpa_supplicant.conf \
+    WCNSS_wlan_dictionary.dat
 #    ipacm \
 #    ipacm-diag \
 #    IPACM_cfg.xml \
@@ -401,6 +398,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/wpa_supplicant_overlay.conf:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/wpa_supplicant_overlay.conf
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/wifi/WCNSS_cfg.dat:system/vendor/etc/wifi/WCNSS_cfg.dat \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 # Model is set via init library
