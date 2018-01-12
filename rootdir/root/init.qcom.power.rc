@@ -2,10 +2,6 @@ on boot
     # Bring up CPUs
     trigger init-cpus
 
-    # Set permissions by node reads by dumpstate
-    chmod 0644 /sys/devices/system/cpu/present
-    chmod 0644 /sys/devices/system/cpu/online
-
     # Update cpusets now that CPUs are up
     write /dev/cpuset/foreground/cpus 0-3
     write /dev/cpuset/foreground/boost/cpus 0-3
@@ -21,7 +17,7 @@ on boot
     chown system system /dev/cpuset/camera-daemon/tasks
     chmod 0664 /dev/cpuset/camera-daemon/tasks
 
-    # HMP: Enable sched boost (no effect on EAS)
+    # Enable sched boost
     write /proc/sys/kernel/sched_boost 1
 
 on enable-low-power
@@ -58,7 +54,10 @@ on init-cpus
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
 
-    # Configure governor settings for big cluster
+    # Avoid overheating, cap the max frequency of silver core to 1.6 GHz
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 1593600
+
+     # Configure governor settings for big cluster
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
@@ -84,7 +83,7 @@ on init-cpus
     write /sys/module/cpu_boost/parameters/input_boost_freq "0:1324800 2:1324800"
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
 
-    # HMP: Set big.LITTLE scheduler parameters (no effect on EAS)
+    # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_boost 0
     write /proc/sys/kernel/sched_migration_fixup 1
     write /proc/sys/kernel/sched_upmigrate 95
@@ -145,10 +144,6 @@ on property:dev.bootcomplete=1
     write /dev/cpuset/foreground/cpus 0-2
     write /dev/cpuset/background/cpus 0
     write /dev/cpuset/system-background/cpus 0-2
-
-    # Set permissions for dumpstate nodes
-    chmod 0644 /d/rpm_stats
-    chmod 0644 /d/dpm_master_stats
 
     # VM
     write /proc/sys/vm/dirty_background_ratio 20
