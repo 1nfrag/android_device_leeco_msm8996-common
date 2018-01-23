@@ -195,6 +195,8 @@ PRODUCT_PACKAGES += \
     libtinyxml
 
 PRODUCT_PACKAGES += \
+    vendor.display.color@1.0-service \
+    vendor.display.color@1.0-impl \
     vendor.display.config@1.0 \
     vendor.display.config@1.0_vendor
 
@@ -221,7 +223,12 @@ PRODUCT_PACKAGES += \
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
-    android.hardware.drm@1.0-impl
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service.widevine \
+
+# For android_filesystem_config.h
+PRODUCT_PACKAGES += \
+    fs_config_files
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
@@ -250,6 +257,12 @@ PRODUCT_COPY_FILES += \
 # HIDL
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:system/vendor/manifest.xml
+
+# Healthd
+#PRODUCT_PACKAGES += \
+#    android.hardware.health@1.0-impl \
+#    android.hardware.health@1.0-convert \
+#    android.hardware.health@1.0-service
 
 # IRQ
 PRODUCT_COPY_FILES += \
@@ -373,6 +386,10 @@ PRODUCT_VENDOR_KERNEL_HEADERS := hardware/qcom/msm8996/kernel-headers
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
+
+# VNDK-SP:
+PRODUCT_PACKAGES += \
+    vndk-sp
 
 # Wifi
 PRODUCT_PACKAGES += \
