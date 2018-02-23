@@ -34,13 +34,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.ssr.3mic=false \
     af.fast_track_multiplier=1 \
     audio.heap.size.multiplier=7 \
-    ro.vendor.audio.sdk.fluencetype=fluence \
     ro.vendor.audio.sdk.ssr=false \
     vendor.audio_hal.period_size=192 \
     vendor.audio.tunnel.encode=false \
     vendor.voice.path.for.pcm.voip=true \
+    ro.vendor.audio.sdk.fluencetype=fluence \
     persist.vendor.audio.fluence.voicecall=true \
-    persist.vendor.audio.fluence.voicerec=true \
+    persist.vendor.audio.fluence.voicerec=false \
     persist.vendor.audio.fluence.audiorec=false \
     persist.vendor.audio.fluence.speaker=true \
     vendor.audio.offload.buffer.size.kb=64 \
@@ -63,8 +63,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     bt.max.hfpclient.connections=1 \
     qcom.bluetooth.soc=rome \
     ro.bluetooth.wipower=true \
-    ro.bluetooth.emb_wp_mode=true \
-    persist.bt.enableAptXHD=true 
+    ro.bluetooth.emb_wp_mode=true
 
 # System property for cabl
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -81,11 +80,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.camera.HAL3.enabled=1 \
     persist.camera.imglib.fddsp=1 \
     persist.camera.llc=1 \
-    vidc.enc.disable.pq=true \
-    persist.camera.llnoise=1
-
-# Charger
-ro.enable_boot_charger_mode=1 
+    persist.camera.llnoise=1 \
 
 # Display power reduction (FOSS)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -133,6 +128,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.qcom.ad=1 \
     ro.qcom.ad.sensortype=3
 
+# Perf
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.am.reschedule_service=true \
+    ro.vendor.extension_library=libqti-perfd-client.so \
+    ro.min_freq_0=307200 \
+    ro.min_freq_4=307200 \
+    ro.sys.fw.bg_apps_limit=60
+
 # QCOM
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst="/dev/block/bootdevice/by-name/frp" \
@@ -171,9 +174,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.REVERSE_QMI=0 \
     persist.radio.ROTATION_ENABLE=1 \
     persist.dbg.volte_avail_ovr=1 \
-    persist.dbg.vt_avail_ovr=1 \
-    persist.dbg.ims_volte_enable=1 \
-    persist.dbg.wfc_avail_ovr=1
+    persist.dbg.vt_avail_ovr=1
 
 #default SAR mode 0:off/1:on
 PRODUCT_PROPERTY_OVERRIDES += \

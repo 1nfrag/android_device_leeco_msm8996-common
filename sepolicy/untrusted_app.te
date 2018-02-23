@@ -1,6 +1,1 @@
-allow untrusted_app rootfs:dir { open read };
-allow untrusted_app sysfs_zram:dir search;
-allow untrusted_app sysfs_zram:file { getattr open read };
-
-allow untrusted_app bt_firmware_file:dir read;
-allow untrusted_app bt_firmware_file:dir search;
+get_prop(untrusted_app, camera_prop)

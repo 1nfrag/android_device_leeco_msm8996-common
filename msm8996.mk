@@ -384,14 +384,6 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
     android.hardware.sensors@1.0-service
 
-# LePref settigs modules
-PRODUCT_PACKAGES += \
-    LePref
-
-# LePref Files
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/leeco/msm8996-common/lepref/files,/system/etc)
-
 # Telephony
 PRODUCT_PACKAGES += \
     telephony-ext
