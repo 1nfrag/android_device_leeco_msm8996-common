@@ -270,6 +270,10 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes
 
+# LePref settigs modules
+PRODUCT_PACKAGES += \
+    LePref
+
 # Libshims
 PRODUCT_PACKAGES += \
     libshims_ims
