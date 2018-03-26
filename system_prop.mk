@@ -26,8 +26,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vidc.enc.dcvs.extra-buff-count=2
 
 # Set default power mode to low power for encoder
-PRODUCT_PROPERTY_OVERRIDES += \
-    vidc.debug.perf.mode=2
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    vidc.debug.perf.mode=2
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
