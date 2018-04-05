@@ -217,6 +217,10 @@ PRODUCT_PACKAGES += \
     libstlport
 
 
+# KCAL
+PRODUCT_PACKAGES += \
+    kcal
+
 # Doze mode
 PRODUCT_PACKAGES += \
     OneplusThreeDoze
