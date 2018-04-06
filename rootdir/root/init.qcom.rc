@@ -586,23 +586,23 @@ on boot
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
-
     # end boot time fs tune
     write /sys/block/sda/queue/read_ahead_kb 512
     write /sys/block/sda/queue/nr_requests 512
     write /sys/block/sda/queue/iostats 1
-
     # CPE fw_name used by sound trigger HAL
     chown media audio /sys/kernel/wcd_cpe0/fw_name
-
     # Enable ZRAM on boot_complete
     swapon_all /fstab.qcom
+    # Enable hvdcp
+    setprop persist.hvdcp.allow_opti 1
 
 # start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
-    user root
+    user camera
     group camera system inet input graphics
+    seclabel u:r:mm-qcamerad:s0
     writepid /dev/cpuset/system-background/tasks
 
 # start up peripheral manager
@@ -847,6 +847,7 @@ service start_hci_filter /system/vendor/bin/wcnss_filter
     class late_start
     user bluetooth
     group bluetooth diag system wakelock
+    seclabel u:r:wcnss_filter:s0
     disabled
 
 service config_bt_addr /system/vendor/bin/btnvtool -O
@@ -854,6 +855,7 @@ service config_bt_addr /system/vendor/bin/btnvtool -O
     user bluetooth
     group bluetooth radio
     oneshot
+    seclabel u:r:btnvtool:s0
 
 on property:wc_transport.start_root=true
     start hci_filter_root
@@ -984,7 +986,7 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     disabled
 
 on property:persist.radio.multisim.config=dsds
-    start ril-daemon2
+    enable ril-daemon2
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -1009,6 +1011,16 @@ service qcom-sh /system/bin/sh /init.qcom.sh
     class late_start
     user root
     oneshot
+    seclabel u:r:qti_init_shell:s0
+
+service hvdcp_opti /vendor/bin/hvdcp_opti
+    class main
+    user root
+    group root
+    seclabel u:r:hvdcp:s0
+
+on charger
+    start hvdcp_opti
 
 on property:persist.sys.le_fast_chrg_enable=1
     write /sys/class/power_supply/le_ab/le_quick_charge_mode 0
