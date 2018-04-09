@@ -224,7 +224,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-service \
     android.hardware.drm@1.0-impl \
-    android.hardware.drm@1.0-service.widevine \
+    android.hardware.drm@1.0-service.widevine
 
 # For android_filesystem_config.h
 PRODUCT_PACKAGES += \
@@ -232,7 +232,8 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.0-service
+    fingerprint.msm8996 \
+    android.hardware.biometrics.fingerprint@2.1-service
 # Gatekeeper HAL
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
