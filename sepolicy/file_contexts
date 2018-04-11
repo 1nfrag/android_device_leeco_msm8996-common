@@ -1,5 +1,11 @@
+#/dev/block/sdf9 for phonecontrol securitydisk
+/dev/block/sdf9    u:object_r:frp_block_device:s0
+/dev/block/sdf10   u:object_r:frp_block_device:s0
+/dev/block/sda4    u:object_r:frp_block_device:s0
+#add by luxi
+/dev/socket/sdcard u:object_r:vold_socket:s0
 # Block devices
-/dev/block/platform/soc/624000.ufshc/by-name/persist                     u:object_r:persist_block_device:s0
+# /dev/block/platform/soc/624000.ufshc/by-name/persist                     u:object_r:persist_block_device:s0
 
 # data
 /data/vendor/nfc(/.*)?                                                   u:object_r:nfc_data_file:s0
